@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<root xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:gazebo="http://playerstage.sourceforge.net/gazebo/xmlschema/#gz"
+    xmlns:model="http://playerstage.sourceforge.net/gazebo/xmlschema/#model"
+	xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+	xmlns:body="http://playerstage.sourceforge.net/gazebo/xmlschema/#body"
+    xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom"
+    xmlns:joint="http://playerstage.sourceforge.net/gazebo/xmlschema/#joint"
+	xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+	xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+	xmlns:rendering="http://playerstage.sourceforge.net/gazebo/xmlschema/#rendering"
+    xmlns:renderable="http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable"
+    xmlns:physics="http://playerstage.sourceforge.net/gazebo/xmlschema/#physics"
+	xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find kinova_description)/urdf/door.gazebo" />
+  <xacro:macro name="door" params="parent">
+
+  <link name="cabinet">
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find kinova_description)/meshes/cabinet.stl" scale="1 1 1"/>
+      </geometry>
+       <material name="yellow">
+        <color rgba="1 1 0.4 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+	 	<mesh filename="file://$(find kinova_description)/meshes/cabinet.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+
+
+  <joint name="hinge" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="-0.0285 -0.010 0.02"/>
+    <parent link="cabinet"/>
+    <child link="door_1"/>
+  </joint>
+
+
+  <link name="door_1">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find kinova_description)/meshes/door.stl" scale="1 1 1"/>
+      </geometry>
+
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+	 	<mesh filename="file://$(find kinova_description)/meshes/door.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="connect_cabinet_to_parent" type="fixed">
+    <child link="cabinet" />
+    <parent link="${parent}"/>
+<!--    <origin xyz="0 0 0" rpy="0 0 0" />-->
+
+    <origin xyz="0 -0.4 0" rpy="0 0 0" />
+  </joint>
+
+  <transmission name="tran1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="hinge">
+          <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor1">
+          <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+          <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+</xacro:macro>
+</root>
