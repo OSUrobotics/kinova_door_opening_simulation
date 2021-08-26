@@ -84,3 +84,6 @@ To avoid running into build error issues, I recommend creating a dedicated works
 The simple door model is considered. Door Handle waypoints are calculated on the circular path that a door is bound to follow. 
 Following with the motion planning is done using the RRT*  algorithm.
 
+### Sample Demo Link
+
+A sample demo is available at: https://drive.google.com/file/d/1tPfN5mgjaV8Rc22MiduuAmux-9FoBlG4/view?usp=sharing The motion is not very smooth yet.
