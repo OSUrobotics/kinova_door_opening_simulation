@@ -41,6 +41,16 @@ To avoid running into build error issues, I recommend creating a dedicated works
   
   **3. Our next goal is to Fix the Grasping issue using graspit-pkg. You can find the installation guide for graspit-pkg at https://github.com/JenniferBuehler/graspit-pkgs/wiki/Installation 
   
+  In addition, install joint-control-pkgs, general-message-pkgs and gazebo-pkgs
+  
+  ```
+  cd ~/kinova_ws/src
+  git clone https://github.com/JenniferBuehler/joint-control-pkgs.git
+  git clone https://github.com/JenniferBuehler/general-message-pkgs.git
+  git clone https://github.com/JenniferBuehler/gazebo-pkgs.git
+  cd ~/kinova_ws
+  catkin_make
+  ```
   *Install the graspit-pkg and its dependencies in the kinova-ros workspace that you have build.*
   
   **The xacro file for Grasp Fix Plugin is included in our commit.**
