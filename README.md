@@ -39,7 +39,7 @@ To avoid running into build error issues, I recommend creating a dedicated works
   
   Now your system is ready to run kinova-ros package. You can spawn the Kinova arm in Gazebo and visualize the arm in rviz using ROS. 
   
-  **3. Our next goal is to Fix the Grasping issue using graspit-pkg. You can find the installation guide for graspit-pkg at https://github.com/JenniferBuehler/graspit-pkgs/wiki/Installation Follow only Step 1 and Step 2.
+  **3. Our next goal is to Fix the Grasping issue using graspit-pkg. You can find the installation guide for graspit-pkg at https://github.com/JenniferBuehler/graspit-pkgs/wiki/Installation Follow only Step 1 and Step 2. No need to clone jaco-arm-pkgs
   
   In addition, install joint-control-pkgs, general-message-pkgs and gazebo-pkgs
   
